@@ -14,7 +14,7 @@ public class Board : MonoBehaviour {
   /// <summary>
   ///
   /// </summary>
-  public bool PairRevealed() {
+  public bool HasRevealedPair() {
     return firstRevealedTile != null && secondRevealedTile != null;
   }
 

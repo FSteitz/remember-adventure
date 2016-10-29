@@ -46,7 +46,7 @@ public class RememberTile : MonoBehaviour {
   ///
   /// </summary>
   void OnMouseDown() {
-    if (!board.PairRevealed()) {
+    if (!board.HasRevealedPair()) {
       board.RegisterRevealedTile(transform.gameObject);
       clicked = true;
     }
