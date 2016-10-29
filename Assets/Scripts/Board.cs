@@ -27,5 +27,15 @@ public class Board : MonoBehaviour {
     } else if (secondRevealedTile == null) {
       secondRevealedTile = tile;
     }
+
+    if (firstRevealedTile != null && secondRevealedTile != null) {
+      if (firstRevealedTile.tag.Equals(secondRevealedTile.tag)) {
+        firstRevealedTile.GetComponent<RememberTile>().MarkMatched();
+        firstRevealedTile = null;
+
+        secondRevealedTile.GetComponent<RememberTile>().MarkMatched();
+        secondRevealedTile = null;
+      }
+    }
   }
 }

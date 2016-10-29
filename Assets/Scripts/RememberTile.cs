@@ -14,6 +14,7 @@ public class RememberTile : MonoBehaviour {
 
 	private bool clicked = false;
   private bool revealed = false;
+  private bool matched = false;
 
   /// <summary>
   ///
@@ -46,9 +47,16 @@ public class RememberTile : MonoBehaviour {
   ///
   /// </summary>
   void OnMouseDown() {
-    if (!board.HasRevealedPair()) {
+    if (!matched && !board.HasRevealedPair()) {
       board.RegisterRevealedTile(transform.gameObject);
       clicked = true;
     }
+  }
+
+  /// <summary>
+  ///
+  /// </summary>
+  public void MarkMatched() {
+    matched = true;
   }
 }
