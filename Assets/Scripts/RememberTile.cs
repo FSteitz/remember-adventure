@@ -10,8 +10,18 @@ public class RememberTile : MonoBehaviour {
   private const int REVEALED_SIDE_ANGLE = 180;
   private const int Z_AXIS_ROTATION_SPEED = 150;
 
+  private Board board;
+
 	private bool clicked = false;
   private bool revealed = false;
+
+  /// <summary>
+  ///
+  /// </summary>
+  void Start() {
+    // The parent of this game object is a row and the row's parent is the board
+    board = transform.parent.transform.parent.gameObject.GetComponent<Board>();
+  }
 
   /// <summary>
   ///
@@ -36,6 +46,9 @@ public class RememberTile : MonoBehaviour {
   ///
   /// </summary>
   void OnMouseDown() {
-    clicked = true;
+    if (!board.PairRevealed()) {
+      board.RegisterRevealedTile(transform.gameObject);
+      clicked = true;
+    }
   }
 }
