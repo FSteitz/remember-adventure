@@ -31,11 +31,14 @@ public class Board : MonoBehaviour {
     if (firstRevealedTile != null && secondRevealedTile != null) {
       if (firstRevealedTile.tag.Equals(secondRevealedTile.tag)) {
         firstRevealedTile.GetComponent<RememberTile>().MarkMatched();
-        firstRevealedTile = null;
-
         secondRevealedTile.GetComponent<RememberTile>().MarkMatched();
-        secondRevealedTile = null;
+      } else {
+        firstRevealedTile.GetComponent<RememberTile>().Reset();
+        secondRevealedTile.GetComponent<RememberTile>().Reset();
       }
+
+      firstRevealedTile = null;
+      secondRevealedTile = null;
     }
   }
 }

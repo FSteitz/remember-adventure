@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ public class RememberTile : MonoBehaviour {
 	private bool clicked = false;
   private bool revealed = false;
   private bool matched = false;
+  private bool reset = false;
 
   /// <summary>
   ///
@@ -29,17 +31,11 @@ public class RememberTile : MonoBehaviour {
   /// </summary>
 	void Update () {
     if (clicked && !revealed) {
-      float zAngle = Mathf.Round(transform.eulerAngles.z);
-
-      if (zAngle < REVEALED_SIDE_ANGLE) {
-        transform.Rotate(0, 0, Z_AXIS_ROTATION_SPEED * Time.deltaTime);
-      } else {
-        Vector3 angles = transform.eulerAngles;
-
-        angles.z = REVEALED_SIDE_ANGLE;
-        transform.eulerAngles = angles;
-        revealed = true;
+      if (Rotate(REVEALED_SIDE_ANGLE)) {
+        board.RegisterRevealedTile(transform.gameObject);
       }
+    } else if (reset && revealed) {
+      Rotate(0);
     }
   }
 
@@ -48,8 +44,8 @@ public class RememberTile : MonoBehaviour {
   /// </summary>
   void OnMouseDown() {
     if (!matched && !board.HasRevealedPair()) {
-      board.RegisterRevealedTile(transform.gameObject);
       clicked = true;
+      reset = false;
     }
   }
 
@@ -58,5 +54,44 @@ public class RememberTile : MonoBehaviour {
   /// </summary>
   public void MarkMatched() {
     matched = true;
+    Destroy(transform.gameObject); // TODO: Replace the destruction with an animation (and disable it at the end)
+  }
+
+  /// <summary>
+  ///
+  /// </summary>
+  public void Reset() {
+    clicked = false;
+    reset = true;
+  }
+
+  /// <summary>
+  ///
+  /// </summary>
+  private bool Rotate(int targetSideAngle) {
+    float zAngle = Mathf.Round(transform.eulerAngles.z);
+    int rotationSpeed = Z_AXIS_ROTATION_SPEED;
+    bool reachedTarget = false;
+    bool mustRotate = false;
+
+    if (targetSideAngle == 0) {
+      mustRotate = zAngle > targetSideAngle;
+      rotationSpeed *= -1;
+    } else {
+      mustRotate = zAngle < targetSideAngle;
+    }
+
+    if (mustRotate) {
+      transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
+    } else {
+      Vector3 angles = transform.eulerAngles;
+
+      angles.z = targetSideAngle;
+      transform.eulerAngles = angles;
+      revealed = !revealed;
+      reachedTarget = true;
+    }
+
+    return reachedTarget;
   }
 }
