@@ -8,8 +8,8 @@ using UnityEngine;
 /// </summary>
 public class RememberTile : MonoBehaviour {
 
-  private const int REVEALED_SIDE_ANGLE = 180;
-  private const float ROTATION_SPEED = 1;
+  private const float REVEALED_SIDE_ANGLE = 180f;
+  private const float ROTATION_SPEED = 1.5f;
 
   private readonly Vector3 FORWARD = Vector3.forward * REVEALED_SIDE_ANGLE;
   private readonly Vector3 BACKWARD = Vector3.back * REVEALED_SIDE_ANGLE;
