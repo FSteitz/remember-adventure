@@ -1,0 +1,11 @@
+{
+  "name": "memory-adventure",
+  "version": "0.1.0",
+  "description": "A mobile game based on Unity",
+  "copyright": "Flomit 2016",
+  "title": "Memory Adventure",
+  "authors": [
+    "Florian Steitz",
+    "Michael Kornas"
+  ]
+}
