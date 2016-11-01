@@ -41,7 +41,7 @@ public class RememberTile : MonoBehaviour {
       }
 
       if (Rotate(FORWARD)) {
-        board.CheckMatch();
+        board.CheckForMatch();
         registered = false;
         reveal = false;
       }
@@ -73,7 +73,7 @@ public class RememberTile : MonoBehaviour {
   /// <summary>
   ///
   /// </summary>
-  public void MarkMatched() {
+  public void MarkAsMatched() {
     matched = true;
     board.Unregister(transform.gameObject);
     Destroy(transform.gameObject); // TODO: Replace the destruction with an animation (and disable it at the end)

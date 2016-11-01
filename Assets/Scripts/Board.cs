@@ -47,7 +47,7 @@ public class Board : MonoBehaviour {
   /// <summary>
   ///
   /// </summary>
-  public void CheckMatch() {
+  public void CheckForMatch() {
     if (HasRevealedPair() && AllRevealed()) {
       if (allMatch) {
         MarkAllAsMatched();
@@ -79,7 +79,7 @@ public class Board : MonoBehaviour {
   /// </summary>
   private void MarkAllAsMatched() {
     new List<GameObject>(revealedTiles).ForEach(tile => {
-      tile.GetComponent<RememberTile>().MarkMatched();
+      tile.GetComponent<RememberTile>().MarkAsMatched();
     });
   }
 
