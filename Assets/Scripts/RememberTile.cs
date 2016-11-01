@@ -9,7 +9,10 @@ using UnityEngine;
 public class RememberTile : MonoBehaviour {
 
   private const int REVEALED_SIDE_ANGLE = 180;
-  private const int Z_AXIS_ROTATION_SPEED = 150;
+  private const float ROTATION_SPEED = 1;
+
+  private readonly Vector3 FORWARD = Vector3.forward * REVEALED_SIDE_ANGLE;
+  private readonly Vector3 BACKWARD = Vector3.back * REVEALED_SIDE_ANGLE;
 
   private Board board;
 
@@ -31,11 +34,14 @@ public class RememberTile : MonoBehaviour {
   /// </summary>
 	void Update () {
     if (clicked && !revealed) {
-      if (Rotate(REVEALED_SIDE_ANGLE)) {
+      if (Rotate(FORWARD)) {
         board.RegisterRevealedTile(transform.gameObject);
       }
     } else if (reset && revealed) {
-      Rotate(0);
+      if (Rotate(BACKWARD)) {
+        matched = false;
+        reset = false;
+      }
     }
   }
 
@@ -45,7 +51,6 @@ public class RememberTile : MonoBehaviour {
   void OnMouseDown() {
     if (!matched && !board.HasRevealedPair()) {
       clicked = true;
-      reset = false;
     }
   }
 
@@ -68,30 +73,23 @@ public class RememberTile : MonoBehaviour {
   /// <summary>
   ///
   /// </summary>
-  private bool Rotate(int targetSideAngle) {
-    float zAngle = Mathf.Round(transform.eulerAngles.z);
-    int rotationSpeed = Z_AXIS_ROTATION_SPEED;
+  private bool Rotate(Vector3 direction) {
+    Vector3 targetAngles = transform.eulerAngles + direction;
+    Vector3 eulerAngles = Vector3.Lerp(transform.eulerAngles, targetAngles, ROTATION_SPEED * Time.deltaTime);
     bool reachedTarget = false;
-    bool mustRotate = false;
 
-    if (targetSideAngle == 0) {
-      mustRotate = zAngle > targetSideAngle;
-      rotationSpeed *= -1;
-    } else {
-      mustRotate = zAngle < targetSideAngle;
-    }
-
-    if (mustRotate) {
-      transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
-    } else {
-      Vector3 angles = transform.eulerAngles;
-
-      angles.z = targetSideAngle;
-      transform.eulerAngles = angles;
+    // When revealing, the z-axis increases (e.g. 19, 121, 177) and it should stop once it exceeds 180 degrees. In this
+    // case, the z-axis is set to 180.
+    //
+    // When hiding, the z-axis decreases (e.g. 177, 121, 19) and it should stop once it exceeds 0 degrees, which is a
+    // value greater than 180 degrees (e.g. 360). In this case, the z-axis is set to 0.
+    if (eulerAngles.z > REVEALED_SIDE_ANGLE) {
+      eulerAngles.z = (direction == FORWARD) ? REVEALED_SIDE_ANGLE : 0;
       revealed = !revealed;
       reachedTarget = true;
     }
 
+    transform.eulerAngles = eulerAngles;
     return reachedTarget;
   }
 }
