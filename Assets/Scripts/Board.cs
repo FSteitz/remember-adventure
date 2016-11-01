@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -10,6 +11,7 @@ public class Board : MonoBehaviour {
   private const int MATCH_COUNT = 2;
 
 	private List<GameObject> revealedTiles = new List<GameObject>();
+  private bool allMatch = true;
 
   /// <summary>
   ///
@@ -23,6 +25,10 @@ public class Board : MonoBehaviour {
   /// </summary>
   public void Register(GameObject tile) {
     if (!HasRevealedPair()) {
+      if (revealedTiles.Count > 0) {
+        allMatch &= revealedTiles.Last().tag.Equals(tile.tag);
+      }
+
       revealedTiles.Add(tile);
     }
   }
@@ -32,6 +38,10 @@ public class Board : MonoBehaviour {
   /// </summary>
   public void Unregister(GameObject tile) {
     revealedTiles.Remove(tile);
+
+    if (revealedTiles.Count == 0) {
+      allMatch = true;
+    }
   }
 
   /// <summary>
@@ -39,7 +49,7 @@ public class Board : MonoBehaviour {
   /// </summary>
   public void CheckMatch() {
     if (HasRevealedPair() && AllRevealed()) {
-      if (AllMatch()) {
+      if (allMatch) {
         MarkAllAsMatched();
       } else {
         ResetAll();
@@ -62,28 +72,6 @@ public class Board : MonoBehaviour {
     }
 
     return allRevealed;
-  }
-
-  /// <summary>
-  ///
-  /// </summary>
-  private bool AllMatch() {
-    GameObject previousTile = null;
-    bool allMatch = false;
-
-    foreach (GameObject tile in revealedTiles) {
-      if (previousTile != null) {
-        allMatch = tile.tag.Equals(previousTile.tag);
-
-        if (!allMatch) {
-          break;
-        }
-      }
-
-      previousTile = tile;
-    }
-
-    return allMatch;
   }
 
   /// <summary>
