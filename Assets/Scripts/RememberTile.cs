@@ -16,8 +16,9 @@ public class RememberTile : MonoBehaviour {
 
   private Board board;
 
-	private bool clicked = false;
+	private bool reveal = false;
   private bool revealed = false;
+  private bool registered = false;
   private bool matched = false;
   private bool reset = false;
 
@@ -33,12 +34,20 @@ public class RememberTile : MonoBehaviour {
   ///
   /// </summary>
 	void Update () {
-    if (clicked && !revealed) {
+    if (reveal && !revealed) {
+      if (!registered) {
+        board.Register(transform.gameObject);
+        registered = true;
+      }
+
       if (Rotate(FORWARD)) {
-        board.RegisterRevealedTile(transform.gameObject);
+        board.CheckMatch();
+        registered = false;
+        reveal = false;
       }
     } else if (reset && revealed) {
       if (Rotate(BACKWARD)) {
+        board.Unregister(transform.gameObject);
         matched = false;
         reset = false;
       }
@@ -50,8 +59,15 @@ public class RememberTile : MonoBehaviour {
   /// </summary>
   void OnMouseDown() {
     if (!matched && !board.HasRevealedPair()) {
-      clicked = true;
+      reveal = true;
     }
+  }
+
+  /// <summary>
+  ///
+  /// </summary>
+  public bool IsRevealed() {
+    return revealed;
   }
 
   /// <summary>
@@ -59,6 +75,7 @@ public class RememberTile : MonoBehaviour {
   /// </summary>
   public void MarkMatched() {
     matched = true;
+    board.Unregister(transform.gameObject);
     Destroy(transform.gameObject); // TODO: Replace the destruction with an animation (and disable it at the end)
   }
 
@@ -66,7 +83,6 @@ public class RememberTile : MonoBehaviour {
   ///
   /// </summary>
   public void Reset() {
-    clicked = false;
     reset = true;
   }
 

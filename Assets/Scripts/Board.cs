@@ -2,43 +2,105 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 /// <summary>
 ///
 /// </summary>
 public class Board : MonoBehaviour {
 
-	GameObject firstRevealedTile;
-  GameObject secondRevealedTile;
+  private const int MATCH_COUNT = 2;
+
+	private List<GameObject> revealedTiles = new List<GameObject>();
 
   /// <summary>
   ///
   /// </summary>
   public bool HasRevealedPair() {
-    return firstRevealedTile != null && secondRevealedTile != null;
+    return revealedTiles.Count == MATCH_COUNT;
   }
 
   /// <summary>
   ///
   /// </summary>
-  public void RegisterRevealedTile(GameObject tile) {
-    if (firstRevealedTile == null) {
-      firstRevealedTile = tile;
-    } else if (secondRevealedTile == null) {
-      secondRevealedTile = tile;
+  public void Register(GameObject tile) {
+    if (!HasRevealedPair()) {
+      revealedTiles.Add(tile);
+    }
+  }
+
+  /// <summary>
+  ///
+  /// </summary>
+  public void Unregister(GameObject tile) {
+    revealedTiles.Remove(tile);
+  }
+
+  /// <summary>
+  ///
+  /// </summary>
+  public void CheckMatch() {
+    if (HasRevealedPair() && AllRevealed()) {
+      if (AllMatch()) {
+        MarkAllAsMatched();
+      } else {
+        ResetAll();
+      }
+    }
+  }
+
+  /// <summary>
+  ///
+  /// </summary>
+  private bool AllRevealed() {
+    bool allRevealed = false;
+
+    foreach (GameObject tile in revealedTiles) {
+      allRevealed = tile.GetComponent<RememberTile>().IsRevealed();
+
+      if (!allRevealed) {
+        break;
+      }
     }
 
-    if (firstRevealedTile != null && secondRevealedTile != null) {
-      if (firstRevealedTile.tag.Equals(secondRevealedTile.tag)) {
-        firstRevealedTile.GetComponent<RememberTile>().MarkMatched();
-        secondRevealedTile.GetComponent<RememberTile>().MarkMatched();
-      } else {
-        firstRevealedTile.GetComponent<RememberTile>().Reset();
-        secondRevealedTile.GetComponent<RememberTile>().Reset();
+    return allRevealed;
+  }
+
+  /// <summary>
+  ///
+  /// </summary>
+  private bool AllMatch() {
+    GameObject previousTile = null;
+    bool allMatch = false;
+
+    foreach (GameObject tile in revealedTiles) {
+      if (previousTile != null) {
+        allMatch = tile.tag.Equals(previousTile.tag);
+
+        if (!allMatch) {
+          break;
+        }
       }
 
-      firstRevealedTile = null;
-      secondRevealedTile = null;
+      previousTile = tile;
     }
+
+    return allMatch;
+  }
+
+  /// <summary>
+  ///
+  /// </summary>
+  private void MarkAllAsMatched() {
+    new List<GameObject>(revealedTiles).ForEach(tile => {
+      tile.GetComponent<RememberTile>().MarkMatched();
+    });
+  }
+
+  /// <summary>
+  ///
+  /// </summary>
+  private void ResetAll() {
+    new List<GameObject>(revealedTiles).ForEach(tile => {
+      tile.GetComponent<RememberTile>().Reset();
+    });
   }
 }
