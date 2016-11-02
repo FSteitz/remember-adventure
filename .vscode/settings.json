@@ -3,7 +3,6 @@
 	{
 		"**/.DS_Store":true,
 		"**/.git":true,
-		"**/.gitignore":true,
 		"**/.gitattributes":true,
 		"**/.gitmodules":true,
 		"**/.svn":true,
@@ -51,7 +50,8 @@
 		"library/":true,
 		"obj/":true,
 		"Obj/":true,
-		"ProjectSettings/":true,		"temp/":true,
+		"ProjectSettings/":true,
+		"temp/":true,
 		"Temp/":true
 	}
 }
