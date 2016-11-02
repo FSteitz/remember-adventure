@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 ///
@@ -9,6 +10,8 @@ using UnityEngine;
 public class GameController : MonoBehaviour {
 
   private const string BOARD_TAG = "Board";
+
+  public Text winText;
 
   private List<GameObject> activeBoards = new List<GameObject>();
   private bool allBoardsFinished = false;
@@ -23,12 +26,14 @@ public class GameController : MonoBehaviour {
       board.GetComponent<Board>().GameController = controller;
       activeBoards.Add(board);
     }
+
+    winText.enabled = false;
 	}
 
 	// Update is called once per frame
 	void Update () {
-    if (allBoardsFinished) {
-      Debug.Log("Game over");
+    if (allBoardsFinished && !winText.enabled) {
+      winText.enabled = true;
     }
 	}
 
