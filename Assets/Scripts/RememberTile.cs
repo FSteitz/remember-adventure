@@ -28,7 +28,7 @@ public class RememberTile : MonoBehaviour {
 	void Update () {
     if (reveal && !revealed) {
       if (!registered) {
-        Board.Register(transform.gameObject);
+        Board.RegisterToggledTile(transform.gameObject);
         registered = true;
       }
 
@@ -39,7 +39,7 @@ public class RememberTile : MonoBehaviour {
       }
     } else if (reset && revealed) {
       if (Rotate(BACKWARD)) {
-        Board.Unregister(transform.gameObject);
+        Board.UnregisterToggledTile(transform.gameObject);
         matched = false;
         reset = false;
       }
@@ -50,7 +50,7 @@ public class RememberTile : MonoBehaviour {
   ///
   /// </summary>
   void OnMouseDown() {
-    if (!matched && !Board.HasRevealedPair()) {
+    if (!matched && !Board.HasToggledPair()) {
       reveal = true;
     }
   }
@@ -67,7 +67,7 @@ public class RememberTile : MonoBehaviour {
   /// </summary>
   public void MarkAsMatched() {
     matched = true;
-    Board.Unregister(transform.gameObject);
+    Board.UnregisterToggledTile(transform.gameObject);
     Destroy(transform.gameObject); // TODO: Replace the destruction with an animation (and disable it at the end)
   }
 

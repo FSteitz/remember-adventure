@@ -12,8 +12,8 @@ public class Board : MonoBehaviour {
 
   public GameController GameController { get; set; }
 
-  private List<GameObject> availableTiles = new List<GameObject>();
-	private List<GameObject> revealedTiles = new List<GameObject>();
+  private List<GameObject> activeTiles = new List<GameObject>();
+	private List<GameObject> toggledTiles = new List<GameObject>();
   private bool allMatch = true;
 
   /// <summary>
@@ -25,7 +25,7 @@ public class Board : MonoBehaviour {
     foreach (Transform row in transform) {
       foreach (Transform tile in row) {
         tile.gameObject.GetComponent<RememberTile>().Board = board;
-        availableTiles.Add(tile.gameObject);
+        activeTiles.Add(tile.gameObject);
       }
     }
   }
@@ -33,30 +33,30 @@ public class Board : MonoBehaviour {
   /// <summary>
   ///
   /// </summary>
-  public bool HasRevealedPair() {
-    return revealedTiles.Count == MATCH_COUNT;
+  public bool HasToggledPair() {
+    return toggledTiles.Count == MATCH_COUNT;
   }
 
   /// <summary>
   ///
   /// </summary>
-  public void Register(GameObject tile) {
-    if (!HasRevealedPair()) {
-      if (revealedTiles.Count > 0) {
-        allMatch &= revealedTiles.Last().tag.Equals(tile.tag);
+  public void RegisterToggledTile(GameObject tile) {
+    if (!HasToggledPair()) {
+      if (toggledTiles.Count > 0) {
+        allMatch &= toggledTiles.Last().tag.Equals(tile.tag);
       }
 
-      revealedTiles.Add(tile);
+      toggledTiles.Add(tile);
     }
   }
 
   /// <summary>
   ///
   /// </summary>
-  public void Unregister(GameObject tile) {
-    revealedTiles.Remove(tile);
+  public void UnregisterToggledTile(GameObject tile) {
+    toggledTiles.Remove(tile);
 
-    if (revealedTiles.Count == 0) {
+    if (toggledTiles.Count == 0) {
       allMatch = true;
     }
   }
@@ -65,7 +65,7 @@ public class Board : MonoBehaviour {
   ///
   /// </summary>
   public void CheckForMatch() {
-    if (HasRevealedPair() && AllRevealed()) {
+    if (HasToggledPair() && AllRevealed()) {
       if (allMatch) {
         MarkAllAsMatched();
       } else {
@@ -80,7 +80,7 @@ public class Board : MonoBehaviour {
   private bool AllRevealed() {
     bool allRevealed = false;
 
-    foreach (GameObject tile in revealedTiles) {
+    foreach (GameObject tile in toggledTiles) {
       allRevealed = tile.GetComponent<RememberTile>().IsRevealed();
 
       if (!allRevealed) {
@@ -95,12 +95,12 @@ public class Board : MonoBehaviour {
   ///
   /// </summary>
   private void MarkAllAsMatched() {
-    new List<GameObject>(revealedTiles).ForEach(tile => {
+    new List<GameObject>(toggledTiles).ForEach(tile => {
       tile.GetComponent<RememberTile>().MarkAsMatched();
-      availableTiles.Remove(tile);
+      activeTiles.Remove(tile);
     });
 
-    if (availableTiles.Count == 0) {
+    if (activeTiles.Count == 0) {
       GameController.RegisterFinishedBoard(gameObject);
     }
   }
@@ -109,7 +109,7 @@ public class Board : MonoBehaviour {
   ///
   /// </summary>
   private void ResetAll() {
-    new List<GameObject>(revealedTiles).ForEach(tile => {
+    new List<GameObject>(toggledTiles).ForEach(tile => {
       tile.GetComponent<RememberTile>().Reset();
     });
   }
