@@ -10,6 +10,8 @@ public class Board : MonoBehaviour {
 
   private const int MATCH_COUNT = 2;
 
+  public GameController GameController { get; set; }
+
 	private List<GameObject> revealedTiles = new List<GameObject>();
   private bool allMatch = true;
 
