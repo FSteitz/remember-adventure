@@ -97,7 +97,12 @@ public class Board : MonoBehaviour {
   private void MarkAllAsMatched() {
     new List<GameObject>(revealedTiles).ForEach(tile => {
       tile.GetComponent<RememberTile>().MarkAsMatched();
+      availableTiles.Remove(tile);
     });
+
+    if (availableTiles.Count == 0) {
+      GameController.RegisterFinishedBoard(gameObject);
+    }
   }
 
   /// <summary>
