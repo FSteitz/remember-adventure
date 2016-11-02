@@ -12,8 +12,23 @@ public class Board : MonoBehaviour {
 
   public GameController GameController { get; set; }
 
+  private List<GameObject> availableTiles = new List<GameObject>();
 	private List<GameObject> revealedTiles = new List<GameObject>();
   private bool allMatch = true;
+
+  /// <summary>
+  ///
+  /// </summary>
+  void Start() {
+    Board board = gameObject.GetComponent<Board>();
+
+    foreach (Transform row in transform) {
+      foreach (Transform tile in row) {
+        tile.gameObject.GetComponent<RememberTile>().Board = board;
+        availableTiles.Add(tile.gameObject);
+      }
+    }
+  }
 
   /// <summary>
   ///

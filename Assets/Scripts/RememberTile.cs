@@ -14,7 +14,7 @@ public class RememberTile : MonoBehaviour {
   private readonly Vector3 FORWARD = Vector3.forward * REVEALED_SIDE_ANGLE;
   private readonly Vector3 BACKWARD = Vector3.back * REVEALED_SIDE_ANGLE;
 
-  private Board board;
+  public Board Board { get; set; }
 
 	private bool reveal = false;
   private bool revealed = false;
@@ -25,29 +25,21 @@ public class RememberTile : MonoBehaviour {
   /// <summary>
   ///
   /// </summary>
-  void Start() {
-    // The parent of this game object is a row and the row's parent is the board
-    board = transform.parent.transform.parent.gameObject.GetComponent<Board>();
-  }
-
-  /// <summary>
-  ///
-  /// </summary>
 	void Update () {
     if (reveal && !revealed) {
       if (!registered) {
-        board.Register(transform.gameObject);
+        Board.Register(transform.gameObject);
         registered = true;
       }
 
       if (Rotate(FORWARD)) {
-        board.CheckForMatch();
+        Board.CheckForMatch();
         registered = false;
         reveal = false;
       }
     } else if (reset && revealed) {
       if (Rotate(BACKWARD)) {
-        board.Unregister(transform.gameObject);
+        Board.Unregister(transform.gameObject);
         matched = false;
         reset = false;
       }
@@ -58,7 +50,7 @@ public class RememberTile : MonoBehaviour {
   ///
   /// </summary>
   void OnMouseDown() {
-    if (!matched && !board.HasRevealedPair()) {
+    if (!matched && !Board.HasRevealedPair()) {
       reveal = true;
     }
   }
@@ -75,7 +67,7 @@ public class RememberTile : MonoBehaviour {
   /// </summary>
   public void MarkAsMatched() {
     matched = true;
-    board.Unregister(transform.gameObject);
+    Board.Unregister(transform.gameObject);
     Destroy(transform.gameObject); // TODO: Replace the destruction with an animation (and disable it at the end)
   }
 
