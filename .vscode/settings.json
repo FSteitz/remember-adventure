@@ -5,7 +5,9 @@
     "**/.git": true,
     "Assets/Materials": true,
     "Assets/Scenes": true,
+    "bin": true,
     "Library/": true,
+    "obj": true,
     "ProjectSettings/": true,
     "Temp/": true
   }
