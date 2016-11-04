@@ -6,3 +6,4 @@ Temp/
 # Files
 *.csproj
 *.lock.json
+*.sln
