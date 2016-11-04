@@ -63,6 +63,8 @@ public class Rotator : MonoBehaviour {
     Vector3 targetAngles = transform.eulerAngles + targetAngle;
     Vector3 eulerAngles = Vector3.Lerp(transform.eulerAngles, targetAngles, ROTATION_SPEED * Time.deltaTime);
 
+    // Example: Max angle is 180 degrees
+    //
     // When revealing, the z-axis increases (e.g. 19, 121, 177) and it should stop once it exceeds 180 degrees. In this
     // case, the z-axis is set to 180.
     //
