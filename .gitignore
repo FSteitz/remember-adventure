@@ -4,4 +4,5 @@ obj/
 Temp/
 
 # Files
+*.csproj
 *.lock.json
