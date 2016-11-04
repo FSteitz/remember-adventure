@@ -11,10 +11,10 @@ public class RememberTile : MonoBehaviour {
   private const float REVEALED_SIDE_ANGLE = 180f;
 
   public Board Board { get; set; }
+  public bool IsRevealed { get; set; }
 
   private Rotator rotator;
 	private bool reveal = false;
-  private bool revealed = false;
   private bool matched = false;
   private bool reset = false;
 
@@ -23,15 +23,16 @@ public class RememberTile : MonoBehaviour {
   /// </summary>
   void Start() {
     rotator = gameObject.GetComponent<Rotator>();
+    IsRevealed = false;
   }
 
   /// <summary>
   ///
   /// </summary>
 	void Update () {
-    if (reveal && !revealed) {
+    if (reveal && !IsRevealed) {
       Reveal();
-    } else if (reset && revealed) {
+    } else if (reset && IsRevealed) {
       Hide();
     }
   }
@@ -43,13 +44,6 @@ public class RememberTile : MonoBehaviour {
     if (!matched && !Board.HasToggledPair()) {
       reveal = true;
     }
-  }
-
-  /// <summary>
-  ///
-  /// </summary>
-  public bool IsRevealed() {
-    return revealed;
   }
 
   /// <summary>
@@ -73,7 +67,7 @@ public class RememberTile : MonoBehaviour {
   /// </summary>
   private void Reveal() {
     if (rotator.HasFinished) {
-      revealed = true;
+      IsRevealed = true;
       reveal = false;
 
       Board.CheckForMatch();
@@ -92,7 +86,7 @@ public class RememberTile : MonoBehaviour {
       Board.UnregisterToggledTile(gameObject);
       rotator.Reset();
 
-      revealed = false;
+      IsRevealed = false;
       matched = false;
       reset = false;
     } else if (!rotator.HasStarted) {

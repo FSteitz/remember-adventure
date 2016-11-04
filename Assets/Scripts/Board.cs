@@ -81,7 +81,7 @@ public class Board : MonoBehaviour {
     bool allRevealed = false;
 
     foreach (GameObject tile in toggledTiles) {
-      allRevealed = tile.GetComponent<RememberTile>().IsRevealed();
+      allRevealed = tile.GetComponent<RememberTile>().IsRevealed;
 
       if (!allRevealed) {
         break;
