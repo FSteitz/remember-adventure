@@ -57,8 +57,8 @@ public class RememberTile : MonoBehaviour {
   /// </summary>
   public void MarkAsMatched() {
     matched = true;
-    Board.UnregisterToggledTile(transform.gameObject);
-    Destroy(transform.gameObject); // TODO: Replace the destruction with an animation (and disable it at the end)
+    Board.UnregisterToggledTile(gameObject);
+    Destroy(gameObject); // TODO: Replace the destruction with an animation (and disable it at the end)
   }
 
   /// <summary>
@@ -79,7 +79,7 @@ public class RememberTile : MonoBehaviour {
       Board.CheckForMatch();
       rotator.Reset();
     } else if (!rotator.HasStarted) {
-      Board.RegisterToggledTile(transform.gameObject);
+      Board.RegisterToggledTile(gameObject);
       rotator.Rotate(rotator.FORWARD, REVEALED_SIDE_ANGLE);
     }
   }
@@ -89,7 +89,7 @@ public class RememberTile : MonoBehaviour {
   /// </summary>
   private void Hide() {
     if (rotator.HasFinished) {
-      Board.UnregisterToggledTile(transform.gameObject);
+      Board.UnregisterToggledTile(gameObject);
       rotator.Reset();
 
       revealed = false;
