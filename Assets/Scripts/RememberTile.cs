@@ -15,8 +15,8 @@ public class RememberTile : MonoBehaviour {
 
   private Rotator rotator;
 	private bool reveal = false;
-  private bool matched = false;
   private bool reset = false;
+  private bool hasMatched = false;
 
   /// <summary>
   ///
@@ -41,7 +41,7 @@ public class RememberTile : MonoBehaviour {
   ///
   /// </summary>
   void OnMouseDown() {
-    if (!matched && !Board.HasToggledPair()) {
+    if (!hasMatched && !Board.HasToggledPair()) {
       reveal = true;
     }
   }
@@ -50,7 +50,7 @@ public class RememberTile : MonoBehaviour {
   ///
   /// </summary>
   public void MarkAsMatched() {
-    matched = true;
+    hasMatched = true;
     Board.UnregisterToggledTile(gameObject);
     Destroy(gameObject); // TODO: Replace the destruction with an animation (and disable it at the end)
   }
@@ -87,7 +87,7 @@ public class RememberTile : MonoBehaviour {
       rotator.Reset();
 
       IsRevealed = false;
-      matched = false;
+      hasMatched = false;
       reset = false;
     } else if (!rotator.HasStarted) {
       rotator.Rotate(rotator.BACK, REVEALED_SIDE_ANGLE);
