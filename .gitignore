@@ -1,6 +1,7 @@
 # Directories
 Library/
 obj/
+Out/
 Temp/
 
 # Files
