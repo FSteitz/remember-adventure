@@ -40,7 +40,7 @@ public class RememberTile : MonoBehaviour {
   /// <summary>
   ///
   /// </summary>
-  void OnMouseDown() {
+  void OnMouseUp() {
     if (!hasMatched && !Board.HasToggledPair()) {
       reveal = true;
     }
