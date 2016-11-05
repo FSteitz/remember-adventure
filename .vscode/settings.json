@@ -8,6 +8,7 @@
     "bin": true,
     "Library/": true,
     "obj": true,
+    "Out": true,
     "ProjectSettings/": true,
     "Temp/": true
   }
