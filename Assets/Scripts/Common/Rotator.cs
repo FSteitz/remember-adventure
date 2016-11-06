@@ -9,8 +9,8 @@ public class Rotator : MonoBehaviour {
 
   private const float ROTATION_SPEED = 1.5f;
 
-  public readonly Vector3 FORWARD = Vector3.forward;
-  public readonly Vector3 BACK = Vector3.back;
+  public static readonly Vector3 FORWARD = Vector3.forward;
+  public static readonly Vector3 BACK = Vector3.back;
 
   public bool HasStarted { get; set; }
   public bool HasFinished { get; set; }
