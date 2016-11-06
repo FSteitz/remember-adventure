@@ -963,7 +963,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 661961136}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 568324055}
@@ -999,7 +999,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &770904371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1178,6 +1178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 911803069}
   - component: {fileID: 911803070}
+  - component: {fileID: 911803071}
   m_Layer: 0
   m_Name: Tiles
   m_TagString: Untagged
@@ -1210,11 +1211,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 911803068}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c1cf73bf4023414f8ed677af33a5144, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: {x: 0, y: 1, z: 0}
+--- !u!114 &911803071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 911803068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86fa3c0019dd348de8b4bc269b84eea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  height: 1
-  moveOnStartup: 0
 --- !u!1001 &920663353
 Prefab:
   m_ObjectHideFlags: 0
