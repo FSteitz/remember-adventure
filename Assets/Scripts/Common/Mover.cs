@@ -15,7 +15,10 @@ public class Mover : MonoBehaviour {
 
   private Vector3 targetPosition;
 
-  void Start() {
+  /// <summary>
+  ///
+  /// </summary>
+  void Awake() {
     targetPosition = Vector3.zero;
     Speed = DefaultSpeed;
     IsMoving = false;
