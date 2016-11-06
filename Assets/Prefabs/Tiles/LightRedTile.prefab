@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 65239085198880710}
   - component: {fileID: 114214536572197792}
   - component: {fileID: 114907021195742488}
+  - component: {fileID: 114616321545607690}
   m_Layer: 0
   m_Name: LightRedTile
   m_TagString: LightRed
@@ -227,6 +228,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d60445aa18c424e9a9494f0e57b3f12c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114616321545607690
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1630429303659728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86fa3c0019dd348de8b4bc269b84eea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114907021195742488

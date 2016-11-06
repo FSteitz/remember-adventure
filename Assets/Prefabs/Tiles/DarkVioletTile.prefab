@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 65784917058569292}
   - component: {fileID: 114042173634113606}
   - component: {fileID: 114734542482161810}
+  - component: {fileID: 114297990939510524}
   m_Layer: 0
   m_Name: DarkVioletTile
   m_TagString: DarkViolet
@@ -227,6 +228,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d60445aa18c424e9a9494f0e57b3f12c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114297990939510524
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1314821813532320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86fa3c0019dd348de8b4bc269b84eea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114734542482161810

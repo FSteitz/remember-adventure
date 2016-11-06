@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 65827551342962036}
   - component: {fileID: 114982561713317910}
   - component: {fileID: 114261791227934414}
+  - component: {fileID: 114304036554655532}
   m_Layer: 0
   m_Name: DarkRedTile
   m_TagString: DarkRed
@@ -227,6 +228,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22c1f0ded78554630a0e64d80f67402b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114304036554655532
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1528928028068640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86fa3c0019dd348de8b4bc269b84eea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114982561713317910
