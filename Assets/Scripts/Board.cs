@@ -22,8 +22,8 @@ public class Board : MonoBehaviour {
   void Start() {
     Board board = gameObject.GetComponent<Board>();
 
-    foreach (Transform row in transform) {
-      foreach (Transform tile in row) {
+    foreach (GameObject tileRow in GameObject.FindGameObjectsWithTag(Tag.TileRow)) {
+      foreach (Transform tile in tileRow.transform) {
         tile.gameObject.GetComponent<RememberTile>().Board = board;
         activeTiles.Add(tile.gameObject);
       }

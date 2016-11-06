@@ -10,8 +10,6 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class GameController : MonoBehaviour {
 
-  private const string BOARD_TAG = "Board";
-
   public Text winText;
   public Button restartButton;
   public Button quitButton;
@@ -25,7 +23,7 @@ public class GameController : MonoBehaviour {
 	void Start () {
     GameController controller = gameObject.GetComponent<GameController>();
 
-    foreach (GameObject board in GameObject.FindGameObjectsWithTag(BOARD_TAG)) {
+    foreach (GameObject board in GameObject.FindGameObjectsWithTag(Tag.Board)) {
       board.GetComponent<Board>().GameController = controller;
       activeBoards.Add(board);
     }
