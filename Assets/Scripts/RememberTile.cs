@@ -74,7 +74,7 @@ public class RememberTile : MonoBehaviour {
       rotator.Reset();
     } else if (!rotator.HasStarted) {
       Board.RegisterToggledTile(gameObject);
-      rotator.Rotate(Rotator.FORWARD, REVEALED_SIDE_ANGLE);
+      rotator.Rotate(Rotator.Forward, REVEALED_SIDE_ANGLE);
     }
   }
 
@@ -90,7 +90,7 @@ public class RememberTile : MonoBehaviour {
       hasMatched = false;
       reset = false;
     } else if (!rotator.HasStarted) {
-      rotator.Rotate(Rotator.BACK, REVEALED_SIDE_ANGLE);
+      rotator.Rotate(Rotator.Back, REVEALED_SIDE_ANGLE);
     }
   }
 }

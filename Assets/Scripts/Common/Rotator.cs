@@ -9,8 +9,8 @@ public class Rotator : MonoBehaviour {
 
   private const float ROTATION_SPEED = 1.5f;
 
-  public static readonly Vector3 FORWARD = Vector3.forward;
-  public static readonly Vector3 BACK = Vector3.back;
+  public static readonly Vector3 Forward = Vector3.forward;
+  public static readonly Vector3 Back = Vector3.back;
 
   public bool HasStarted { get; set; }
   public bool HasFinished { get; set; }
@@ -71,7 +71,7 @@ public class Rotator : MonoBehaviour {
     // When hiding, the z-axis decreases (e.g. 177, 121, 19) and it should stop once it exceeds 0 degrees, which is a
     // value greater than 180 degrees (e.g. 360). In this case, the z-axis is set to 0.
     if (eulerAngles.z > maxAngle) {
-      eulerAngles.z = (direction == FORWARD) ? maxAngle : 0;
+      eulerAngles.z = (direction == Forward) ? maxAngle : 0;
       HasStarted = false;
       HasFinished = true;
     }
