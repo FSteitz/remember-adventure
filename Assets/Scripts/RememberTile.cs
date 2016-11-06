@@ -14,6 +14,8 @@ public class RememberTile : MonoBehaviour {
   public bool IsRevealed { get; set; }
 
   private Rotator rotator;
+  private Mover mover;
+
 	private bool reveal = false;
   private bool reset = false;
   private bool hasMatched = false;
@@ -23,6 +25,7 @@ public class RememberTile : MonoBehaviour {
   /// </summary>
   void Start() {
     rotator = gameObject.GetComponent<Rotator>();
+    mover = gameObject.GetComponent<Mover>();
     IsRevealed = false;
   }
 
@@ -50,9 +53,13 @@ public class RememberTile : MonoBehaviour {
   ///
   /// </summary>
   public void MarkAsMatched() {
+    Vector3 targetPosition = transform.position;
+
     hasMatched = true;
     Board.UnregisterToggledTile(gameObject);
-    Destroy(gameObject); // TODO: Replace the destruction with an animation (and disable it at the end)
+
+    targetPosition.y = 0;
+    mover.MoveTo(targetPosition);
   }
 
   /// <summary>
