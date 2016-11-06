@@ -3,12 +3,13 @@
     "**/*.meta": true,
     "**/.DS_Store": true,
     "**/.git": true,
-    "Assets/Materials": true,
-    "Assets/Scenes": true,
-    "bin": true,
+    "Assets/Materials/": true,
+    "Assets/Prefabs/": true,
+    "Assets/Scenes/": true,
+    "bin/": true,
     "Library/": true,
-    "obj": true,
-    "Out": true,
+    "obj/": true,
+    "Out/": true,
     "ProjectSettings/": true,
     "Temp/": true
   }
