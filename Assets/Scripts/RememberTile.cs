@@ -20,12 +20,15 @@ public class RememberTile : MonoBehaviour {
   private bool reset = false;
   private bool hasMatched = false;
 
+  private Vector3 positionOrigin;
+
   /// <summary>
   ///
   /// </summary>
   void Start() {
     rotator = gameObject.GetComponent<Rotator>();
     mover = gameObject.GetComponent<Mover>();
+    positionOrigin = transform.position;
     IsRevealed = false;
   }
 
@@ -58,7 +61,7 @@ public class RememberTile : MonoBehaviour {
     hasMatched = true;
     Board.UnregisterToggledTile(gameObject);
 
-    targetPosition.y = 0;
+    targetPosition.y = positionOrigin.y;
     mover.MoveTo(targetPosition);
   }
 
