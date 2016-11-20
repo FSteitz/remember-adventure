@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class GameController : MonoBehaviour {
 
+  public Text tryText;
   public Text winText;
   public Button restartButton;
   public Button quitButton;
@@ -27,6 +28,9 @@ public class GameController : MonoBehaviour {
       board.GetComponent<Board>().GameController = controller;
       activeBoards.Add(board);
     }
+
+    tryText.text = TranslationProvider.Get(TranslationKey.TextTries);
+    winText.text = TranslationProvider.Get(TranslationKey.TextWin);
 
     winText.gameObject.SetActive(false);
     quitButton.gameObject.SetActive(false);
