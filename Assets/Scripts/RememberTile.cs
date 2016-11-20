@@ -5,7 +5,7 @@
 /// </summary>
 public class RememberTile : MonoBehaviour {
 
-  private const float REVEALED_SIDE_ANGLE = 180f;
+  private const float RevealedSideAngle = 180f;
 
   public Board Board { get; set; }
   public bool IsRevealed { get; set; }
@@ -81,7 +81,7 @@ public class RememberTile : MonoBehaviour {
       rotator.Reset();
     } else if (!rotator.HasStarted) {
       Board.RegisterToggledTile(gameObject);
-      rotator.Rotate(Rotator.Forward, REVEALED_SIDE_ANGLE);
+      rotator.Rotate(Rotator.Forward, RevealedSideAngle);
     }
   }
 
@@ -97,7 +97,7 @@ public class RememberTile : MonoBehaviour {
       hasMatched = false;
       reset = false;
     } else if (!rotator.HasStarted) {
-      rotator.Rotate(Rotator.Back, REVEALED_SIDE_ANGLE);
+      rotator.Rotate(Rotator.Back, RevealedSideAngle);
     }
   }
 }

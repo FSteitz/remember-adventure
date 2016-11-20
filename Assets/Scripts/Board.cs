@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class Board : MonoBehaviour {
 
-  private const int MATCH_COUNT = 2;
+  private const int MatchCount = 2;
 
   public GameController GameController { get; set; }
 
@@ -33,7 +33,7 @@ public class Board : MonoBehaviour {
   ///
   /// </summary>
   public bool HasToggledPair() {
-    return toggledTiles.Count == MATCH_COUNT;
+    return toggledTiles.Count == MatchCount;
   }
 
   /// <summary>

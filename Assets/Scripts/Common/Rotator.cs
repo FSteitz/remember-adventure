@@ -5,7 +5,7 @@
 /// </summary>
 public class Rotator : MonoBehaviour {
 
-  private const float ROTATION_SPEED = 1.5f;
+  private const float RotationSpeed = 1.5f;
 
   public static readonly Vector3 Forward = Vector3.forward;
   public static readonly Vector3 Back = Vector3.back;
@@ -59,7 +59,7 @@ public class Rotator : MonoBehaviour {
   /// </summary>
   private void Rotate() {
     var targetAngles = transform.eulerAngles + targetAngle;
-    var eulerAngles = Vector3.Lerp(transform.eulerAngles, targetAngles, ROTATION_SPEED * Time.deltaTime);
+    var eulerAngles = Vector3.Lerp(transform.eulerAngles, targetAngles, RotationSpeed * Time.deltaTime);
 
     // Example: Max angle is 180 degrees
     //
