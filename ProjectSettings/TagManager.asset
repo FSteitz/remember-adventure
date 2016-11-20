@@ -15,6 +15,9 @@ TagManager:
   - DarkViolet
   - LightYellow
   - TileRow
+  - LightGray
+  - Turqoise
+  - UiController
   layers:
   - Default
   - TransparentFX

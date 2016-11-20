@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 /// <summary>
@@ -8,41 +7,32 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class GameController : MonoBehaviour {
 
-  public Text tryText;
-  public Text winText;
-  public Button restartButton;
-  public Button quitButton;
-
+  private UiController uiController;
   private List<GameObject> activeBoards = new List<GameObject>();
   private bool allBoardsFinished = false;
+  private int tryCount = 0;
 
   /// <summary>
   ///
   /// </summary>
 	void Start () {
-    var controller = gameObject.GetComponent<GameController>();
+    var gameController = gameObject.GetComponent<GameController>();
 
     foreach (GameObject board in GameObject.FindGameObjectsWithTag(Tag.Board)) {
-      board.GetComponent<Board>().GameController = controller;
+      board.GetComponent<Board>().GameController = gameController;
       activeBoards.Add(board);
     }
 
-    tryText.text = TranslationProvider.Get(TranslationKey.TextTries);
-    winText.text = TranslationProvider.Get(TranslationKey.TextWin);
-
-    winText.gameObject.SetActive(false);
-    quitButton.gameObject.SetActive(false);
-    restartButton.gameObject.SetActive(false);
+    uiController = GameObject.FindWithTag(Tag.UiController).GetComponent<UiController>();
+    uiController.UpdateTryText(tryCount);
 	}
 
 	/// <summary>
   ///
   /// </summary>
 	void Update () {
-    if (allBoardsFinished && !winText.IsActive()) {
-      restartButton.gameObject.SetActive(true);
-      quitButton.gameObject.SetActive(true);
-      winText.gameObject.SetActive(true);
+    if (allBoardsFinished && !uiController.IsWinDialogVisible) {
+      uiController.IsWinDialogVisible = true;
     }
 	}
 
