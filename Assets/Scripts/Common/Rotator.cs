@@ -58,8 +58,8 @@ public class Rotator : MonoBehaviour {
   ///
   /// </summary>
   private void Rotate() {
-    Vector3 targetAngles = transform.eulerAngles + targetAngle;
-    Vector3 eulerAngles = Vector3.Lerp(transform.eulerAngles, targetAngles, ROTATION_SPEED * Time.deltaTime);
+    var targetAngles = transform.eulerAngles + targetAngle;
+    var eulerAngles = Vector3.Lerp(transform.eulerAngles, targetAngles, ROTATION_SPEED * Time.deltaTime);
 
     // Example: Max angle is 180 degrees
     //

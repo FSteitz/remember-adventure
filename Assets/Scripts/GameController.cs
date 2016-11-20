@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour {
   ///
   /// </summary>
 	void Start () {
-    GameController controller = gameObject.GetComponent<GameController>();
+    var controller = gameObject.GetComponent<GameController>();
 
     foreach (GameObject board in GameObject.FindGameObjectsWithTag(Tag.Board)) {
       board.GetComponent<Board>().GameController = controller;
@@ -35,7 +35,9 @@ public class GameController : MonoBehaviour {
     restartButton.gameObject.SetActive(false);
 	}
 
-	// Update is called once per frame
+	/// <summary>
+  ///
+  /// </summary>
 	void Update () {
     if (allBoardsFinished && !winText.IsActive()) {
       restartButton.gameObject.SetActive(true);

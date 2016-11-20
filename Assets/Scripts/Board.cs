@@ -19,7 +19,7 @@ public class Board : MonoBehaviour {
   ///
   /// </summary>
   void Start() {
-    Board board = gameObject.GetComponent<Board>();
+    var board = gameObject.GetComponent<Board>();
 
     foreach (GameObject tileRow in GameObject.FindGameObjectsWithTag(Tag.TileRow)) {
       foreach (Transform tile in tileRow.transform) {
@@ -77,7 +77,7 @@ public class Board : MonoBehaviour {
   ///
   /// </summary>
   private bool AllRevealed() {
-    bool allRevealed = false;
+    var allRevealed = false;
 
     foreach (GameObject tile in toggledTiles) {
       allRevealed = tile.GetComponent<RememberTile>().IsRevealed;

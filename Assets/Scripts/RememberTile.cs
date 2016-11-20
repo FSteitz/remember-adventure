@@ -53,7 +53,7 @@ public class RememberTile : MonoBehaviour {
   ///
   /// </summary>
   public void MarkAsMatched() {
-    Vector3 targetPosition = transform.position;
+    var targetPosition = transform.position;
 
     hasMatched = true;
     Board.UnregisterToggledTile(gameObject);
