@@ -13,5 +13,5 @@ public interface Translation {
   /// <summary>
   ///
   /// </summary>
-	string GetTranslation(string key);
+	string Get(string key);
 }

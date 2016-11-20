@@ -22,7 +22,7 @@ public class GermanTranslation : Translation {
   /// <summary>
   ///
   /// </summary>
-  public string GetTranslation(string key) {
+  public string Get(string key) {
     return Translations[key];
   }
 }

@@ -39,6 +39,6 @@ public class TranslationProvider {
   ///
   /// </summary>
   public static string Get(String key) {
-    return activeTranslation.GetTranslation(key);
+    return activeTranslation.Get(key);
   }
 }
