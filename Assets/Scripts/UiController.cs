@@ -20,9 +20,6 @@ public class UiController : MonoBehaviour {
   /// </summary>
 	void Start () {
     winText.text = TranslationProvider.Get(TranslationKey.TextWin);
-    winText.gameObject.SetActive(false);
-    quitButton.gameObject.SetActive(false);
-    restartButton.gameObject.SetActive(false);
 	}
 
 	/// <summary>
