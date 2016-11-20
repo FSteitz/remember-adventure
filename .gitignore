@@ -6,3 +6,5 @@ Temp/
 
 # Files
 *.sln
+
+Assembly-CSharp.csproj
