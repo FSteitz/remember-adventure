@@ -7,7 +7,7 @@ Memory Adventure is a 3D game based on the Unity game engine. It currently only 
 ## Status
 It runs just fine on Android. But it currently is not under active development. Nevertheless, it's fun!
 
-# License
+## License
 - The code is available under the [MIT license](https://github.com/flomit/remember-adventure/blob/master/LICENSE.md).
 - The materials and textures from the Unity Asset Store (inside store/ folders) were downloaded from https://www.assetstore.unity3d.com/en/#!/content/62018.
   Refer to the publisher for information about the licensing terms.
